@@ -81,6 +81,8 @@ public class Market {
 
     public double simulate() {
         // TODO sub-problem 2 and 3
+        double lastDayPriceSum = 0;
+        int numLastDayTransaction = 0;
         for (int day = 1; day <= 1000; day++) { // do not change this line
             for (int round = 1; round <= 10; round++) { // do not change this line
                 ArrayList<Pair<Seller, Buyer>> pairs = matchedPairs(day, round); // do not change this line
@@ -90,6 +92,10 @@ public class Market {
                     if (buyer.willTransact(seller.getExpectedPrice()) && seller.willTransact(buyer.getExpectedPrice())){
                         buyer.makeTransaction();
                         seller.makeTransaction();
+                        if(day == 1000){
+                            lastDayPriceSum += seller.getExpectedPrice();
+                            numLastDayTransaction++;
+                        }
                     }
                 }
             }
@@ -100,13 +106,12 @@ public class Market {
                 seller.reflect();
             }
         }
-        double priceSum = 0;
-        for (Buyer buyer : buyers){
-            priceSum += buyer.getExpectedPrice();
-        }
-        for (Seller seller : sellers){
-            priceSum += seller.getExpectedPrice();
-        }
-        return priceSum / (buyers.size() + sellers.size());
+//        for (Buyer buyer : buyers){
+//            lastDayPriceSum += buyer.getExpectedPrice();
+//        }
+//        for (Seller seller : sellers){
+//            lastDayPriceSum += seller.getExpectedPrice();
+//        }
+        return lastDayPriceSum / numLastDayTransaction;
     }
 }
