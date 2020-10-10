@@ -15,5 +15,6 @@ public class SessionManager {
 
     public static void expireSession(Session session){
         //TODO: Problem 1.2
+        session.setValid(false);
     }
 }
