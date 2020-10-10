@@ -24,15 +24,45 @@ public class Market {
         buyers = createBuyers(nb, fb);
         sellers = createSellers(ns, fs);
     }
+
+    private double pow(double a, int b){
+        double result = 1;
+        for (int i = 0; i < b; i++){
+            result *= a;
+        }
+        return result;
+    }
     
     private ArrayList<Buyer> createBuyers(int n, ArrayList<Double> f) {
         // TODO sub-problem 3
-        return null;
+        if (f == null) {return null;}
+        int fSize = f.size();
+        ArrayList<Buyer> buyers = new ArrayList<>();
+        for (int i = 1; i <= n; i++){
+            double price = 0;
+            double x = (double)i/n;
+            for (int j = 0; j < fSize; j++){
+                price += f.get(fSize - j - 1) * pow(x, j);
+            }
+            buyers.add(new Buyer(price));
+        }
+        return buyers;
     }
 
     private ArrayList<Seller> createSellers(int n, ArrayList<Double> f) {
         // TODO sub-problem 3
-        return null;
+        if (f == null) {return null;}
+        int fSize = f.size();
+        ArrayList<Seller> sellers = new ArrayList<>();
+        for (int i = 1; i <= n; i++){
+            double price = 0;
+            double x = (double)i/n;
+            for (int j = 0; j < fSize; j++){
+                price += f.get(fSize - j - 1) * pow(x, j);
+            }
+            sellers.add(new Seller(price));
+        }
+        return sellers;
     }
 
     private ArrayList<Pair<Seller, Buyer>> matchedPairs(int day, int round) {
@@ -54,8 +84,29 @@ public class Market {
         for (int day = 1; day <= 1000; day++) { // do not change this line
             for (int round = 1; round <= 10; round++) { // do not change this line
                 ArrayList<Pair<Seller, Buyer>> pairs = matchedPairs(day, round); // do not change this line
+                for (Pair<Seller, Buyer> pair : pairs){
+                    Seller seller = pair.key;
+                    Buyer buyer = pair.value;
+                    if (buyer.willTransact(seller.getExpectedPrice()) && seller.willTransact(buyer.getExpectedPrice())){
+                        buyer.makeTransaction();
+                        seller.makeTransaction();
+                    }
+                }
+            }
+            for (Buyer buyer : buyers){
+                buyer.reflect();
+            }
+            for (Seller seller : sellers){
+                seller.reflect();
             }
         }
-        return 0;
+        double priceSum = 0;
+        for (Buyer buyer : buyers){
+            priceSum += buyer.getExpectedPrice();
+        }
+        for (Seller seller : sellers){
+            priceSum += seller.getExpectedPrice();
+        }
+        return priceSum / (buyers.size() + sellers.size());
     }
 }
