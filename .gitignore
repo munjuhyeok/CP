@@ -1,4 +1,5 @@
-**/.gitignore
 **/.idea
 **/*.class
 **/*.iml
+/HW3/problem2/data/
+/HW3/problem2/test/
