@@ -23,7 +23,8 @@ public class User{
             } else if (size < 3 || rating > recommendedMovies.get(2).getAverageRating()) {
                 recommendedMovies.add(2, movie);
             }
-            if (size == 3) { recommendedMovies.remove(3); }
+            size = recommendedMovies.size();
+            if (size == 4) { recommendedMovies.remove(3); }
 
         }
         return recommendedMovies;
