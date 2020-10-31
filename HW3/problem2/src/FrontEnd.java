@@ -53,7 +53,7 @@ public class FrontEnd {
     public void search(String command) {
         // TODO sub-problem 4
         Set<String> keywords = new HashSet<>();
-        String [] duplicateKeywords = command.split("\\s");
+        String [] duplicateKeywords = command.split("\\s+");
         for (int i = 1; i< duplicateKeywords.length; i++){
             keywords.add(duplicateKeywords[i]);
         }
