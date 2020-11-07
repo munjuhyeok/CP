@@ -111,6 +111,12 @@ public class Grader {
                 String problemId = problem.id;
                 String testCasesDirPath = problem.testCasesDirPath;
                 List<TestCase> testCases = problem.testCases;
+                Collections.sort(testCases, new Comparator<TestCase>() {
+                    @Override
+                    public int compare(TestCase o1, TestCase o2) {
+                        return o1.id.compareTo(o2.id);
+                    }
+                });
                 String sugoFileName = problem.targetFileName;
                 String yoFileName = sugoFileName.split("\\.")[0]+".yo";
                 String testCaseDirPath = problem.testCasesDirPath;
