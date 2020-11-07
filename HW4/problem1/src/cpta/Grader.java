@@ -56,19 +56,38 @@ public class Grader {
     }
 
     private void copyFiles(String sourceDir, String destDir) {
-        File s = new File(sourceDir);
+        File source = new File(sourceDir);
         try {
-            for(File file:s.listFiles()){
-                File d = new File(destDir + file.getName());
-                Files.copy(file.toPath(), d.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            for(File file:source.listFiles()){
+                File dest = new File(destDir + file.getName());
+                Files.copy(file.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
             }
         } catch (IOException e) {
-            System.out.println(String.format("Cannot copy files from %s to %s", sourceDir, destDir));
+//            System.out.println(String.format("Cannot copy files from %s to %s", sourceDir, destDir));
         }
     }
 
-    private String extractFileType(File file){
-        String[] pieces = file.getName().split("\\.");
+    private void copySugoFilesFromChildDir(String Dir) {
+        File parent = new File(Dir);
+        try {
+            for(File sonDir:parent.listFiles()){
+                if(sonDir.isDirectory()) {
+                    for(File file:sonDir.listFiles()) {
+                        if("sugo".equals(extractFileType(file.toString()))) {
+                            File dest = new File(Dir + file.getName());
+                            Files.copy(file.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                        }
+                    }
+                }
+            }
+        } catch (IOException e) {
+//            System.out.println(String.format("Cannot copy files from %s to %s" ));
+        }
+    }
+
+
+    private String extractFileType(String file){
+        String[] pieces = file.split("\\.");
         if(pieces.length == 2){
             return pieces[1].toLowerCase();
         }
@@ -138,15 +157,25 @@ public class Grader {
         Map<String,Map<String, List<Double>>> scoresOfAllStudents = new HashMap<>();
         List<Problem> problems = examSpec.problems;
         List<Student> students = examSpec.students;
-        (new File(submissionDirPath)).listFiles();
+        String[] submissionList = (new File(submissionDirPath)).list();
         for(Student student:students){
             String studentId = student.id;
-            boolean noSubmission = false;
-            String studentPath = submissionDirPath + studentId;
+            String studentPath = null;
+            Map<String, List<Double>> scoresOfStudent = new HashMap<>();
+
+            for(String submission:submissionList){
+                if(submission.startsWith(studentId)){
+                    studentPath = submissionDirPath + submission;
+                }
+            }
+//            if(studentPath == null){
+//                scoresOfAllStudents.put(studentId, scoresOfStudent);
+//                continue;
+//            }
+//            String studentPath = submissionDirPath + studentId;
 //            if(!(new File(studentPath)).exists()){
 //
 //            }
-            Map<String, List<Double>> scoresOfStudent = new HashMap<>();
             for(Problem problem:problems){
                 String problemId = problem.id;
                 String testCasesDirPath = problem.testCasesDirPath;
@@ -164,20 +193,21 @@ public class Grader {
                     copyFiles(wrappersDirPath, problemPath);
                 }
                 if((new File(problemPath)).exists()) {
-                    File[] fileList = (new File(problemPath)).listFiles();
-                    for (File file : fileList) {
-                        if("yo".equals(extractFileType(file)) && !(new File(file.toString().replace("yo","sugo")).exists())){
+                    copySugoFilesFromChildDir(problemPath);
+                    String[] fileList = (new File(problemPath)).list();
+                    for (String file : fileList) {
+                        if("yo".equals(extractFileType(file)) && !(Arrays.asList(fileList).contains(file.replace("yo","sugo")))){
                             halfScore = true;
                         }
                         if("sugo".equals(extractFileType(file))) {
                             try {
-                                compiler.compile(file.toString());
+                                compiler.compile(problemPath + file);
                             } catch (CompileErrorException e) {
                                 for(TestCase testCase:testCases){
                                     problemScores.add(0.0);
                                 }
                                 scoresOfStudent.put(problemId, problemScores);
-                                System.out.println("Failed to compile " + file.toString());
+                                System.out.println("Failed to compile " + file);
                                 compileFail = true;
                                 break;
                             } catch (InvalidFileTypeException e) {
