@@ -17,36 +17,21 @@ public class User {
     private String userPath;
     public String userId;
     public List<Bidding> bids;
-    public List<Course> registeredCourses = new ArrayList<>();
+    public List<Course> registeredCourses;
     File user;
     int mileageSum;
     public User(File user) {
         this.user = user;
         userPath = user.toString();
         this.userId = user.getName();
-        try {
-            Scanner scanner = new Scanner(new File(user, "bid.txt"));
-            bids = new ArrayList<>();
-            while (scanner.hasNext()) {
-                String line = scanner.nextLine();
-                String[] idAndMileage = line.split("\\|");
-                int courseId = Integer.parseInt(idAndMileage[0]);
-                int mileage = Integer.parseInt(idAndMileage[1]);
-                bids.add(new Bidding(courseId, mileage));
-                mileageSum += mileage;
-            }
-            scanner.close();
-        } catch (IOException e) {
-            System.out.println(String.format("%s does not have bid.txt",userId));
-        }
+        loadBids();
     }
 
     private void loadBids(){
-        userPath = user.toString();
-        this.userId = user.getName();
         try {
             Scanner scanner = new Scanner(new File(user, "bid.txt"));
             bids = new ArrayList<>();
+            mileageSum = 0;
             while (scanner.hasNext()) {
                 String line = scanner.nextLine();
                 String[] idAndMileage = line.split("\\|");
@@ -75,6 +60,7 @@ public class User {
     }
 
     public void bid(int courseId, int mileage) throws OverMaxMileageException, IOException {
+        loadBids();
         int newMileageSum;
         if(bids == null){
             throw new IOException(String.format("There is no bids.txt under %s",userId));
@@ -107,6 +93,7 @@ public class User {
     }
 
     public List<Bidding> retrieveBids() throws IOException {
+        loadBids();
         if(bids == null){
             throw new IOException(String.format("There is no bids.txt under %s",userId));
         }
@@ -115,6 +102,7 @@ public class User {
 
 
     public int retrieveBid(int courseId) throws IOException {
+        loadBids();
         if(bids == null){
             throw new IOException(String.format("There is no bids.txt under %s",userId));
         }
@@ -129,6 +117,7 @@ public class User {
     }
 
     public List<Course> retrieveRegisteredCourses() throws IOException {
+        loadBids();
         if(bids == null){
             throw new IOException(String.format("There is no bids.txt under %s",userId));
         }

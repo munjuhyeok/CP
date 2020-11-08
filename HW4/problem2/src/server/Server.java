@@ -199,6 +199,9 @@ public class Server {
     public boolean confirmBids(){
         // TODO Problem 2-3
         try {
+            for (User user : users) {
+                    user.registeredCourses = new ArrayList<>();
+                }
             for (Course course : courseKeywordMap.keySet()) {
                 int coursesId = course.courseId;
                 int quota = course.quota;
@@ -212,10 +215,16 @@ public class Server {
                 Collections.sort(userMileages, new Comparator<Pair<User, Integer>>() {
                     @Override
                     public int compare(Pair<User, Integer> o1, Pair<User, Integer> o2) {
+                        User user1 = o1.key;
+                        User user2 = o2.key;
                         int mileage1 = o1.value;
                         int mileage2 = o2.value;
+                        int mileageSum1 = user1.mileageSum;
+                        int mileageSum2 = user2.mileageSum;
                         if(mileage1 != mileage2){
-                            return mileage1 - mileage2;
+                            return mileage2 - mileage1;
+                        }else if(mileageSum1 != mileageSum2){
+                            return mileageSum1 - mileageSum2;
                         }else {
                             return o1.key.userId.compareTo(o2.key.userId);
                         }
