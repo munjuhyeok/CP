@@ -17,7 +17,7 @@ public class User {
     private String userPath;
     public String userId;
     public List<Bidding> bids;
-    public List<Course> registeredCourses;
+    public List<Course> registeredCourses = new ArrayList<>();
     File user;
     int mileageSum;
     public User(File user) {
@@ -108,8 +108,8 @@ public class User {
         }
         for (Bidding bidding : bids){
             if(courseId == bidding.courseId) {
-                bids.remove(bidding);
-                saveBids();
+//                bids.remove(bidding);
+//                saveBids();
                 return bidding.mileage;
             }
         }
@@ -122,6 +122,11 @@ public class User {
             throw new IOException(String.format("There is no bids.txt under %s",userId));
         }
         return registeredCourses;
+    }
+
+    public void removeAllBids(){
+        bids = new ArrayList<>();
+        saveBids();
     }
 
     @Override

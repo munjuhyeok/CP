@@ -40,7 +40,7 @@ public class Server {
                     Course course = new Course(courseId,college,department,academicDegree,academicYear,courseName,credit,location,instructor,quota);
                     courseKeywordMap.put(course, Set.of(courseName.split("\\s+")));
                 } catch (IOException e) {
-                    e.printStackTrace();
+//                    e.printStackTrace();
                 }
             }
         }
@@ -157,22 +157,22 @@ public class Server {
             }
             user.bid(courseId, mileage);
         } catch (UserIdNotFoundException e) {
-            System.out.println(e.toString());
+//            System.out.println(e.toString());
             return ErrorCode.USERID_NOT_FOUND;
         } catch (NoCourseIdException e) {
-            System.out.println(e.toString());
+//            System.out.println(e.toString());
             return ErrorCode.NO_COURSE_ID;
         } catch (NegativeMileageException e) {
-            System.out.println(e.toString());
+//            System.out.println(e.toString());
             return ErrorCode.NEGATIVE_MILEAGE;
         } catch (OverMaxCourseMileageException e) {
-            System.out.println(e.toString());
+//            System.out.println(e.toString());
             return ErrorCode.OVER_MAX_COURSE_MILEAGE;
         } catch (OverMaxMileageException e) {
-            System.out.println(e.toString());
+//            System.out.println(e.toString());
             return ErrorCode.OVER_MAX_MILEAGE;
         } catch (IOException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
             return ErrorCode.IO_ERROR;
         }
         return ErrorCode.SUCCESS;
@@ -186,10 +186,10 @@ public class Server {
             User user = findUser(userId);
             bids = user.retrieveBids();
         } catch (UserIdNotFoundException e) {
-            System.out.println(e.toString());
+//            System.out.println(e.toString());
             errorCode = ErrorCode.USERID_NOT_FOUND;
         } catch (IOException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
             errorCode = ErrorCode.IO_ERROR;
         }
 
@@ -237,7 +237,7 @@ public class Server {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
             return false;
         }
         return true;
@@ -251,10 +251,10 @@ public class Server {
             User user = findUser(userId);
             registeredCourses = user.retrieveRegisteredCourses();
         } catch (UserIdNotFoundException e) {
-            System.out.println(e.toString());
+//            System.out.println(e.toString());
             errorCode = ErrorCode.USERID_NOT_FOUND;
         } catch (IOException e){
-            e.printStackTrace();
+//            e.printStackTrace();
             errorCode = ErrorCode.IO_ERROR;
         }
 

@@ -11,11 +11,8 @@ import cpta.exceptions.FileSystemRelatedException;
 import cpta.exceptions.InvalidFileTypeException;
 import cpta.exceptions.RunTimeErrorException;
 
-import javax.management.RuntimeErrorException;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.nio.file.*;
 import java.util.*;
 
@@ -29,7 +26,7 @@ public class Grader {
             String f2 = Files.readString(Paths.get(file2));
             return f1.equals(f2);
         } catch (IOException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
             return false;
         }
     }
@@ -38,6 +35,9 @@ public class Grader {
         try {
             String f1 = Files.readString(Paths.get(file1));
             String f2 = Files.readString(Paths.get(file2));
+            if(judgingTypes == null){
+                return f1.equals(f2);
+            }
             if(judgingTypes.contains(Problem.IGNORE_WHITESPACES)){
                 f1 = f1.replaceAll("\\s", "");
                 f2 = f2.replaceAll("\\s", "");
@@ -67,16 +67,14 @@ public class Grader {
         }
     }
 
-    private void copySugoFilesFromChildDir(String Dir) {
+    private void copyFilesFromChildDir(String Dir) {
         File parent = new File(Dir);
         try {
             for(File sonDir:parent.listFiles()){
                 if(sonDir.isDirectory()) {
                     for(File file:sonDir.listFiles()) {
-                        if("sugo".equals(extractFileType(file.toString()))) {
-                            File dest = new File(Dir + file.getName());
-                            Files.copy(file.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
-                        }
+                        File dest = new File(Dir + file.getName());
+                        Files.copy(file.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
                     }
                 }
             }
@@ -125,11 +123,11 @@ public class Grader {
                 try {
                     compiler.compile(problemPath + sugoFileName);
                 }catch (CompileErrorException e){
-                    e.printStackTrace();
+//                    e.printStackTrace();
                 }catch (InvalidFileTypeException e){
-                    e.printStackTrace();
+//                    e.printStackTrace();
                 }catch (FileSystemRelatedException e){
-                    e.printStackTrace();
+//                    e.printStackTrace();
                 }
                 for(TestCase testCase:testCases){
                     String testCaseId = testCase.id;
@@ -141,9 +139,9 @@ public class Grader {
                     } catch (RunTimeErrorException e) {
                         continue;
                     } catch (FileSystemRelatedException e) {
-                        e.printStackTrace();
+//                        e.printStackTrace();
                     } catch (InvalidFileTypeException e) {
-                        e.printStackTrace();
+//                        e.printStackTrace();
                     }
                     if(equals(testCaseDirPath + outputFileName, problemPath + testCaseId)) {
                         problemScores.add(score);
@@ -174,14 +172,6 @@ public class Grader {
                     studentPath = submissionDirPath + submission;
                 }
             }
-//            if(studentPath == null){
-//                scoresOfAllStudents.put(studentId, scoresOfStudent);
-//                continue;
-//            }
-//            String studentPath = submissionDirPath + studentId;
-//            if(!(new File(studentPath)).exists()){
-//
-//            }
             for(Problem problem:problems){
                 String problemId = problem.id;
                 String testCasesDirPath = problem.testCasesDirPath;
@@ -205,7 +195,7 @@ public class Grader {
                     copyFiles(wrappersDirPath, problemPath);
                 }
                 if((new File(problemPath)).exists()) {
-                    copySugoFilesFromChildDir(problemPath);
+                    copyFilesFromChildDir(problemPath);
                     String[] fileList = (new File(problemPath)).list();
                     for (String file : fileList) {
                         if("yo".equals(extractFileType(file)) && !(Arrays.asList(fileList).contains(file.replace("yo","sugo")))){
@@ -219,13 +209,13 @@ public class Grader {
                                     problemScores.add(0.0);
                                 }
                                 scoresOfStudent.put(problemId, problemScores);
-                                System.out.println("Failed to compile " + file);
+//                                System.out.println("Failed to compile " + file);
                                 compileFail = true;
                                 break;
                             } catch (InvalidFileTypeException e) {
-                                e.printStackTrace();
+//                                e.printStackTrace();
                             } catch (FileSystemRelatedException e) {
-                                e.printStackTrace();
+//                                e.printStackTrace();
                             }
                         }
                     }
@@ -242,12 +232,12 @@ public class Grader {
                         executer.execute(problemPath + targetYoFileName, testCaseDirPath + inputFileName, problemPath + testCaseId);
                     } catch (RunTimeErrorException e) {
                         problemScores.add(0.0);
-                        System.out.println("Failed to execute " + problemPath + targetYoFileName + " with " + testCaseDirPath + inputFileName);
+//                        System.out.println("Failed to execute " + problemPath + targetYoFileName + " with " + testCaseDirPath + inputFileName);
                         continue;
                     } catch (FileSystemRelatedException e) {
-                        e.printStackTrace();
+//                        e.printStackTrace();
                     } catch (InvalidFileTypeException e) {
-                        e.printStackTrace();
+//                        e.printStackTrace();
                     }
                     if(equals(testCaseDirPath + outputFileName, problemPath + testCaseId, judgingTypes)) {
                         problemScores.add(score);
