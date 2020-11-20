@@ -1,4 +1,5 @@
 #include "TestHelper.h"
+#include <algorithm>
 
 namespace TestHelper {
     bool verify(std::string name, std::string lhs, std::string rhs) {
@@ -40,6 +41,9 @@ namespace TestHelper {
 
         while(std::getline(ss_lhs, lhs)) {
             std::getline(ss_rhs, rhs);
+            lhs.erase(std::remove(lhs.begin(), lhs.end(), '\r'), lhs.end());
+            rhs.erase(std::remove(rhs.begin(), rhs.end(), '\r'), rhs.end());
+
             if(lhs != rhs) {
                 std::cout << lhs << " != " << rhs << std::endl;
                 result = false;
