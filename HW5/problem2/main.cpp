@@ -4,6 +4,8 @@
 #include <set>
 #include <vector>
 #include <tuple>
+#include <algorithm>
+#include <cmath>
 
 /* =======START OF PRIME-RELATED HELPERS======= */
 /*
@@ -87,17 +89,103 @@ const std::string MINIMIZE_REGRET = "Minimize-Regret";
 
 std::pair<int, int> number_fight(int a, int b) {
     // TODO 2-1
-    return std::pair<int, int>();
+    std::pair<int, int> result;
+    std::multiset<int> fa = factorize(a);
+    std::multiset<int> fb = factorize(b);
+    std::set<int> intersection;
+    std::set_intersection(fa.begin(), fa.end(), fb.begin(), fb.end(), std::inserter(intersection, intersection.begin()));
+
+    for (int i:intersection){
+        a = a/i;
+        b = b/i;
+    }
+    return std::pair<int, int>(a,b);
 }
 
 std::pair<int, int> number_vs_number(int a, int b) {
     // TODO 2-2
-    return std::pair<int, int>();
+    // if index is 0, chooses to fight, if 1, chooses not to fight. first axis is A, second axis is B. Each element is expected outcome pair (A,B).
+    std::pair<int, int> outcome[2][2];
+    outcome[0][0] = number_fight(a,b);
+    outcome[1][1] = std::make_pair(a,b);
+    int damage_a = a - outcome[0][0].first;
+    int damage_b = b - outcome[0][0].second;
+    if(a%7 == 0){
+        int outcome_b = std::max(1,(int)(b-floor(damage_a/2)));
+        outcome[1][0] = std::make_pair(a-floor(damage_a/2), outcome_b);
+    }else{
+        outcome[1][0] = std::make_pair(a-damage_a, b);
+    }
+    if(b%7 == 0){
+        int outcome_a = std::max(1,(int)(a-floor(damage_b/2)));
+        outcome[0][1] = std::make_pair(outcome_a, b-floor(damage_b/2));
+    }else{
+        outcome[0][1] = std::make_pair(a, b-damage_b);
+    }
+
+    bool a_will_fight;
+    bool a_will_fight1 = outcome[0][0].first >= outcome[1][0].first; //when b chooses to fight
+    bool a_will_fight2 = outcome[0][1].first >= outcome[1][1].first; //when b chooses not to fight
+    if(a_will_fight1 && a_will_fight2){
+        a_will_fight = true;
+    }else if(!a_will_fight1 && !a_will_fight2){
+        a_will_fight = false;
+    }else if(a<b){
+        a_will_fight = true;
+    }else{
+        a_will_fight = false;
+    }
+
+    bool b_will_fight;
+    bool b_will_fight1 = outcome[0][0].second >= outcome[0][1].second;
+    bool b_will_fight2 = outcome[1][0].second >= outcome[1][1].second;
+    if(b_will_fight1 && b_will_fight2){
+        b_will_fight = true;
+    }else if(!b_will_fight1 && !b_will_fight2){
+        b_will_fight = false;
+    }else if(a>b){
+        b_will_fight = true;
+    }else{
+        b_will_fight = false;
+    }
+    int index_a = a_will_fight?0:1;
+    int index_b = b_will_fight?0:1;
+    return outcome[index_a][index_b];
 }
 
 std::pair<std::multiset<int>, std::multiset<int>> player_battle(
     std::string type_a, std::multiset<int> a, std::string type_b, std::multiset<int> b
 ) {
+    int n = a.size();
+    int m = b.size();
+    std::pair<int,int> loss[n][m];
+    std::multiset<int>::iterator it_a = a.begin();
+
+    for(int i = 0; i<n; i++){
+        std::multiset<int>::iterator it_b = b.begin();
+        for(int j = 0; j<m; j++){
+            std::pair<int,int> outcome = number_vs_number(*it_a,*it_b);
+            loss[i][j] = std::make_pair(*it_a - outcome.first, *it_b - outcome.second);
+            it_b++;
+        }
+        it_a++;
+    }
+
+    if(type_a == MAXIMIZE_GAIN) {
+        loss
+    }else if(type_a == MINIMIZE_LOSS){
+
+    }else if(type_a == MINIMIZE_REGRET) {
+
+    }
+
+    if(type_b == MAXIMIZE_GAIN) {
+
+    }else if(type_b == MINIMIZE_LOSS){
+
+    }else if(type_b == MINIMIZE_REGRET) {
+
+    }
     // TODO 2-3
     return std::pair<std::multiset<int>, std::multiset<int>>();
 }
