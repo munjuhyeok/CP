@@ -1,3 +1,0 @@
-/home/mun/CP/HW5/problem1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/mun/CP/HW5/problem1/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/mun/CP/HW5/problem1/cmake-build-debug/CMakeFiles/problem1.dir
