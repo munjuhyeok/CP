@@ -49,7 +49,6 @@ void ClientUI::add_to_cart(std::string product_name) {
             os<<"CLIENT_UI: "<<product_name<<" is added to the cart.\n";
         } else{
             os<<"CLIENT_UI: Invalid product name.\n";
-            return;
         }
     } else{
         os<<"CLIENT_UI: Please login first.\n";

@@ -4,8 +4,8 @@ AdminUI::AdminUI(ShoppingDB &db, std::ostream& os): UI(db, os) { }
 
 void AdminUI::add_product(std::string name, int price) {
     // TODO: For problem 1-1
-    db.addProduct(name, price);
     if (price > 0) {
+        db.addProduct(name, price);
         os << "ADMIN_UI: " << name << " is added to the database.\n";
     } else{
         os << "ADMIN_UI: Invalid price.\n";
@@ -22,7 +22,7 @@ void AdminUI::edit_product(std::string name, int price) {
             os<<"ADMIN_UI: Invalid price.\n";
         }
     }else{
-        os<<"ADMIN_UI: invalid product name.\n";
+        os<<"ADMIN_UI: Invalid product name.\n";
     }
 }
 

@@ -75,7 +75,7 @@ std::vector<Product *> NormalUser::recommend(const std::vector<User *>& users) {
 PremiumUser::PremiumUser(const std::string &name, const std::string &password) : User(name, password) {}
 
 int PremiumUser::getPrice(Product * product) {
-    return 5*(product->price*9/50);
+    return round((float)product->price*9/10);
 }
 
 std::vector<Product *> PremiumUser::recommend(const std::vector<User *>& users) {
