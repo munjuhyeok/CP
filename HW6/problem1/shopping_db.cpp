@@ -33,15 +33,6 @@ Product *ShoppingDB::findProduct(std::string name) {
     return nullptr;
 }
 
-bool ShoppingDB::editProduct(std::string name, int price) {
-    Product* product = findProduct(name);
-    if(product != nullptr){
-        product->price = price;
-        return true;
-    }
-    return false;
-}
-
 void ShoppingDB::addUser(std::string username, std::string password, bool premium) {
     if(premium){
         users.push_back(new PremiumUser(username,password));
@@ -57,4 +48,8 @@ User* ShoppingDB::findUser(std::string username) {
         }
     }
     return nullptr;
+}
+
+std::vector<Product *> ShoppingDB::recommend(User *user) {
+    return user->recommend(users);
 }

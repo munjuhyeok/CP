@@ -17,6 +17,7 @@ class ClientUI : public UI {
         void buy(std::string product_name);
         void buy_all_in_cart();
         void recommend_products();
+        void list_products(std::vector<Product*> products);
     private:
         User* current_user;
 };

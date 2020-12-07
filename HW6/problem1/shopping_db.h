@@ -11,6 +11,8 @@ public:
     ShoppingDB();
 private:
     std::vector<User*> users;
+    std::vector<Product*> products;
+
 public:
     const std::vector<User *> &getUsers() const;
 
@@ -24,15 +26,11 @@ public:
 
     Product* findProduct(std::string name);
 
-    bool editProduct(std::string name, int price); //return whether product with name exists.
-
     void addUser(std::string username, std::string password, bool premium);
 
     User* findUser(std::string username);
 
-
-private:
-    std::vector<Product*> products;
+    std::vector<Product *> recommend(User* user);
 };
 
 #endif //PROBLEM1_SHOPPING_DB_H

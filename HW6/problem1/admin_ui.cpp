@@ -13,10 +13,12 @@ void AdminUI::add_product(std::string name, int price) {
 }
 void AdminUI::edit_product(std::string name, int price) {
     // TODO: For problem 1-1
-
-    if (db.editProduct(name, price)) {
-        os << "ADMIN_UI: " << name << " is modified from the database.\n";
-        if(price<=0) {
+    Product* product = db.findProduct(name);
+    if (product != nullptr) {
+        if(price>0){
+            product->price = price;
+            os << "ADMIN_UI: " << name << " is modified from the database.\n";
+        } else{
             os<<"ADMIN_UI: Invalid price.\n";
         }
     }else{
@@ -33,7 +35,9 @@ void AdminUI::list_products() {
         Product *product = products[i];
         os<<"("<<product->name<<", "<<product->price<<"), ";
     }
-    Product *product = products[num_products - 1];
-    os<<"("<<product->name<<", "<<product->price<<")";
+    if(num_products != 0) {
+        Product *product = products[num_products - 1];
+        os << "(" << product->name << ", " << product->price << ")";
+    }
     os<<"]\n";
 }
