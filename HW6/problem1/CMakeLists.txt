@@ -6,9 +6,12 @@ enable_testing()
 
 add_executable(problem1_main test.cpp ui.cpp admin_ui.cpp client_ui.cpp shopping_db.cpp product.cpp user.cpp)
 add_executable(problem1_test test.cpp ui.cpp admin_ui.cpp client_ui.cpp shopping_db.cpp product.cpp user.cpp)
+add_executable(problem1_mytest mytest.cpp ui.cpp admin_ui.cpp client_ui.cpp shopping_db.cpp product.cpp user.cpp)
 
 target_compile_definitions(problem1_main PRIVATE MAIN)
 target_compile_definitions(problem1_test PRIVATE TEST)
+target_compile_definitions(problem1_mytest PRIVATE MAIN)
+
 
 file(REMOVE_RECURSE ${CMAKE_BINARY_DIR}/test)
 file(COPY test DESTINATION .)

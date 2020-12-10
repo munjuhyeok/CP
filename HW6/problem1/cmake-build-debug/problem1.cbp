@@ -37,6 +37,52 @@
 					<DistClean command="/usr/bin/make -j6 -f &quot;/home/mun/CP/HW6/problem1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
+			<Target title="problem1_mytest">
+				<Option output="/home/mun/CP/HW6/problem1/cmake-build-debug/problem1_mytest" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/mun/CP/HW6/problem1/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMAIN"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j6 -f &quot;/home/mun/CP/HW6/problem1/cmake-build-debug/Makefile&quot;  VERBOSE=1 problem1_mytest"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/home/mun/CP/HW6/problem1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/home/mun/CP/HW6/problem1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/home/mun/CP/HW6/problem1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="problem1_mytest/fast">
+				<Option output="/home/mun/CP/HW6/problem1/cmake-build-debug/problem1_mytest" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/mun/CP/HW6/problem1/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMAIN"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j6 -f &quot;/home/mun/CP/HW6/problem1/cmake-build-debug/Makefile&quot;  VERBOSE=1 problem1_mytest/fast"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/home/mun/CP/HW6/problem1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/home/mun/CP/HW6/problem1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/home/mun/CP/HW6/problem1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
 			<Target title="problem1_test">
 				<Option output="/home/mun/CP/HW6/problem1/cmake-build-debug/problem1_test" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/mun/CP/HW6/problem1/cmake-build-debug"/>
@@ -191,34 +237,45 @@
 			</Target>
 		</Build>
 		<Unit filename="/home/mun/CP/HW6/problem1/admin_ui.cpp">
+			<Option target="problem1_mytest"/>
 			<Option target="problem1_test"/>
 			<Option target="problem1_main"/>
 		</Unit>
 		<Unit filename="/home/mun/CP/HW6/problem1/admin_ui.h">
+			<Option target="problem1_mytest"/>
 			<Option target="problem1_test"/>
 			<Option target="problem1_main"/>
 		</Unit>
 		<Unit filename="/home/mun/CP/HW6/problem1/client_ui.cpp">
+			<Option target="problem1_mytest"/>
 			<Option target="problem1_test"/>
 			<Option target="problem1_main"/>
 		</Unit>
 		<Unit filename="/home/mun/CP/HW6/problem1/client_ui.h">
+			<Option target="problem1_mytest"/>
 			<Option target="problem1_test"/>
 			<Option target="problem1_main"/>
 		</Unit>
+		<Unit filename="/home/mun/CP/HW6/problem1/mytest.cpp">
+			<Option target="problem1_mytest"/>
+		</Unit>
 		<Unit filename="/home/mun/CP/HW6/problem1/product.cpp">
+			<Option target="problem1_mytest"/>
 			<Option target="problem1_test"/>
 			<Option target="problem1_main"/>
 		</Unit>
 		<Unit filename="/home/mun/CP/HW6/problem1/product.h">
+			<Option target="problem1_mytest"/>
 			<Option target="problem1_test"/>
 			<Option target="problem1_main"/>
 		</Unit>
 		<Unit filename="/home/mun/CP/HW6/problem1/shopping_db.cpp">
+			<Option target="problem1_mytest"/>
 			<Option target="problem1_test"/>
 			<Option target="problem1_main"/>
 		</Unit>
 		<Unit filename="/home/mun/CP/HW6/problem1/shopping_db.h">
+			<Option target="problem1_mytest"/>
 			<Option target="problem1_test"/>
 			<Option target="problem1_main"/>
 		</Unit>
@@ -227,18 +284,22 @@
 			<Option target="problem1_main"/>
 		</Unit>
 		<Unit filename="/home/mun/CP/HW6/problem1/ui.cpp">
+			<Option target="problem1_mytest"/>
 			<Option target="problem1_test"/>
 			<Option target="problem1_main"/>
 		</Unit>
 		<Unit filename="/home/mun/CP/HW6/problem1/ui.h">
+			<Option target="problem1_mytest"/>
 			<Option target="problem1_test"/>
 			<Option target="problem1_main"/>
 		</Unit>
 		<Unit filename="/home/mun/CP/HW6/problem1/user.cpp">
+			<Option target="problem1_mytest"/>
 			<Option target="problem1_test"/>
 			<Option target="problem1_main"/>
 		</Unit>
 		<Unit filename="/home/mun/CP/HW6/problem1/user.h">
+			<Option target="problem1_mytest"/>
 			<Option target="problem1_test"/>
 			<Option target="problem1_main"/>
 		</Unit>

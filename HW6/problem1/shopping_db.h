@@ -9,11 +9,7 @@
 class ShoppingDB {
 public:
     ShoppingDB();
-private:
-    std::vector<User*> users;
-    std::vector<Product*> products;
 
-public:
     const std::vector<User *> &getUsers() const;
 
     void setUsers(const std::vector<User *> &users);
@@ -31,6 +27,10 @@ public:
     User* findUser(std::string username);
 
     std::vector<Product *> recommend(User* user);
+private:
+    std::vector<User*> users;
+    std::vector<Product*> products;
+
 };
 
 #endif //PROBLEM1_SHOPPING_DB_H

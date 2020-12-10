@@ -164,6 +164,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named problem1_mytest
+
+# Build rule for target.
+problem1_mytest: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 problem1_mytest
+.PHONY : problem1_mytest
+
+# fast build rule for target.
+problem1_mytest/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_mytest.dir/build.make CMakeFiles/problem1_mytest.dir/build
+.PHONY : problem1_mytest/fast
+
+#=============================================================================
 # Target rules for targets named problem1_test
 
 # Build rule for target.
@@ -559,6 +572,7 @@ admin_ui.o: admin_ui.cpp.o
 
 # target to build an object file
 admin_ui.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_mytest.dir/build.make CMakeFiles/problem1_mytest.dir/admin_ui.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_test.dir/build.make CMakeFiles/problem1_test.dir/admin_ui.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_main.dir/build.make CMakeFiles/problem1_main.dir/admin_ui.cpp.o
 .PHONY : admin_ui.cpp.o
@@ -569,6 +583,7 @@ admin_ui.i: admin_ui.cpp.i
 
 # target to preprocess a source file
 admin_ui.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_mytest.dir/build.make CMakeFiles/problem1_mytest.dir/admin_ui.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_test.dir/build.make CMakeFiles/problem1_test.dir/admin_ui.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_main.dir/build.make CMakeFiles/problem1_main.dir/admin_ui.cpp.i
 .PHONY : admin_ui.cpp.i
@@ -579,6 +594,7 @@ admin_ui.s: admin_ui.cpp.s
 
 # target to generate assembly for a file
 admin_ui.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_mytest.dir/build.make CMakeFiles/problem1_mytest.dir/admin_ui.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_test.dir/build.make CMakeFiles/problem1_test.dir/admin_ui.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_main.dir/build.make CMakeFiles/problem1_main.dir/admin_ui.cpp.s
 .PHONY : admin_ui.cpp.s
@@ -589,6 +605,7 @@ client_ui.o: client_ui.cpp.o
 
 # target to build an object file
 client_ui.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_mytest.dir/build.make CMakeFiles/problem1_mytest.dir/client_ui.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_test.dir/build.make CMakeFiles/problem1_test.dir/client_ui.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_main.dir/build.make CMakeFiles/problem1_main.dir/client_ui.cpp.o
 .PHONY : client_ui.cpp.o
@@ -599,6 +616,7 @@ client_ui.i: client_ui.cpp.i
 
 # target to preprocess a source file
 client_ui.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_mytest.dir/build.make CMakeFiles/problem1_mytest.dir/client_ui.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_test.dir/build.make CMakeFiles/problem1_test.dir/client_ui.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_main.dir/build.make CMakeFiles/problem1_main.dir/client_ui.cpp.i
 .PHONY : client_ui.cpp.i
@@ -609,9 +627,37 @@ client_ui.s: client_ui.cpp.s
 
 # target to generate assembly for a file
 client_ui.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_mytest.dir/build.make CMakeFiles/problem1_mytest.dir/client_ui.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_test.dir/build.make CMakeFiles/problem1_test.dir/client_ui.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_main.dir/build.make CMakeFiles/problem1_main.dir/client_ui.cpp.s
 .PHONY : client_ui.cpp.s
+
+mytest.o: mytest.cpp.o
+
+.PHONY : mytest.o
+
+# target to build an object file
+mytest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_mytest.dir/build.make CMakeFiles/problem1_mytest.dir/mytest.cpp.o
+.PHONY : mytest.cpp.o
+
+mytest.i: mytest.cpp.i
+
+.PHONY : mytest.i
+
+# target to preprocess a source file
+mytest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_mytest.dir/build.make CMakeFiles/problem1_mytest.dir/mytest.cpp.i
+.PHONY : mytest.cpp.i
+
+mytest.s: mytest.cpp.s
+
+.PHONY : mytest.s
+
+# target to generate assembly for a file
+mytest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_mytest.dir/build.make CMakeFiles/problem1_mytest.dir/mytest.cpp.s
+.PHONY : mytest.cpp.s
 
 product.o: product.cpp.o
 
@@ -619,6 +665,7 @@ product.o: product.cpp.o
 
 # target to build an object file
 product.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_mytest.dir/build.make CMakeFiles/problem1_mytest.dir/product.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_test.dir/build.make CMakeFiles/problem1_test.dir/product.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_main.dir/build.make CMakeFiles/problem1_main.dir/product.cpp.o
 .PHONY : product.cpp.o
@@ -629,6 +676,7 @@ product.i: product.cpp.i
 
 # target to preprocess a source file
 product.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_mytest.dir/build.make CMakeFiles/problem1_mytest.dir/product.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_test.dir/build.make CMakeFiles/problem1_test.dir/product.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_main.dir/build.make CMakeFiles/problem1_main.dir/product.cpp.i
 .PHONY : product.cpp.i
@@ -639,6 +687,7 @@ product.s: product.cpp.s
 
 # target to generate assembly for a file
 product.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_mytest.dir/build.make CMakeFiles/problem1_mytest.dir/product.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_test.dir/build.make CMakeFiles/problem1_test.dir/product.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_main.dir/build.make CMakeFiles/problem1_main.dir/product.cpp.s
 .PHONY : product.cpp.s
@@ -649,6 +698,7 @@ shopping_db.o: shopping_db.cpp.o
 
 # target to build an object file
 shopping_db.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_mytest.dir/build.make CMakeFiles/problem1_mytest.dir/shopping_db.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_test.dir/build.make CMakeFiles/problem1_test.dir/shopping_db.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_main.dir/build.make CMakeFiles/problem1_main.dir/shopping_db.cpp.o
 .PHONY : shopping_db.cpp.o
@@ -659,6 +709,7 @@ shopping_db.i: shopping_db.cpp.i
 
 # target to preprocess a source file
 shopping_db.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_mytest.dir/build.make CMakeFiles/problem1_mytest.dir/shopping_db.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_test.dir/build.make CMakeFiles/problem1_test.dir/shopping_db.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_main.dir/build.make CMakeFiles/problem1_main.dir/shopping_db.cpp.i
 .PHONY : shopping_db.cpp.i
@@ -669,6 +720,7 @@ shopping_db.s: shopping_db.cpp.s
 
 # target to generate assembly for a file
 shopping_db.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_mytest.dir/build.make CMakeFiles/problem1_mytest.dir/shopping_db.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_test.dir/build.make CMakeFiles/problem1_test.dir/shopping_db.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_main.dir/build.make CMakeFiles/problem1_main.dir/shopping_db.cpp.s
 .PHONY : shopping_db.cpp.s
@@ -709,6 +761,7 @@ ui.o: ui.cpp.o
 
 # target to build an object file
 ui.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_mytest.dir/build.make CMakeFiles/problem1_mytest.dir/ui.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_test.dir/build.make CMakeFiles/problem1_test.dir/ui.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_main.dir/build.make CMakeFiles/problem1_main.dir/ui.cpp.o
 .PHONY : ui.cpp.o
@@ -719,6 +772,7 @@ ui.i: ui.cpp.i
 
 # target to preprocess a source file
 ui.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_mytest.dir/build.make CMakeFiles/problem1_mytest.dir/ui.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_test.dir/build.make CMakeFiles/problem1_test.dir/ui.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_main.dir/build.make CMakeFiles/problem1_main.dir/ui.cpp.i
 .PHONY : ui.cpp.i
@@ -729,6 +783,7 @@ ui.s: ui.cpp.s
 
 # target to generate assembly for a file
 ui.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_mytest.dir/build.make CMakeFiles/problem1_mytest.dir/ui.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_test.dir/build.make CMakeFiles/problem1_test.dir/ui.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_main.dir/build.make CMakeFiles/problem1_main.dir/ui.cpp.s
 .PHONY : ui.cpp.s
@@ -739,6 +794,7 @@ user.o: user.cpp.o
 
 # target to build an object file
 user.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_mytest.dir/build.make CMakeFiles/problem1_mytest.dir/user.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_test.dir/build.make CMakeFiles/problem1_test.dir/user.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_main.dir/build.make CMakeFiles/problem1_main.dir/user.cpp.o
 .PHONY : user.cpp.o
@@ -749,6 +805,7 @@ user.i: user.cpp.i
 
 # target to preprocess a source file
 user.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_mytest.dir/build.make CMakeFiles/problem1_mytest.dir/user.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_test.dir/build.make CMakeFiles/problem1_test.dir/user.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_main.dir/build.make CMakeFiles/problem1_main.dir/user.cpp.i
 .PHONY : user.cpp.i
@@ -759,6 +816,7 @@ user.s: user.cpp.s
 
 # target to generate assembly for a file
 user.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_mytest.dir/build.make CMakeFiles/problem1_mytest.dir/user.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_test.dir/build.make CMakeFiles/problem1_test.dir/user.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/problem1_main.dir/build.make CMakeFiles/problem1_main.dir/user.cpp.s
 .PHONY : user.cpp.s
@@ -803,6 +861,7 @@ help:
 	@echo "... NightlyTest"
 	@echo "... NightlyUpdate"
 	@echo "... problem1_main"
+	@echo "... problem1_mytest"
 	@echo "... problem1_test"
 	@echo "... admin_ui.o"
 	@echo "... admin_ui.i"
@@ -810,6 +869,9 @@ help:
 	@echo "... client_ui.o"
 	@echo "... client_ui.i"
 	@echo "... client_ui.s"
+	@echo "... mytest.o"
+	@echo "... mytest.i"
+	@echo "... mytest.s"
 	@echo "... product.o"
 	@echo "... product.i"
 	@echo "... product.s"

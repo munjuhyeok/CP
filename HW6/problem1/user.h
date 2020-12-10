@@ -17,13 +17,6 @@ public:
 
     bool verify(std::string password);
 
-private:
-    std::string password;
-protected:
-    int num_recommend = 3;
-    std::vector<Product *> cart;
-    std::vector<Product *> history;
-public:
     const std::vector<Product *> &getHistory() const;
 
     void setHistory(const std::vector<Product *> &history);
@@ -37,21 +30,36 @@ public:
     void add_to_cart(Product *product);
 
     virtual int getPrice(Product*) = 0;
+
     virtual std::vector<Product *> recommend(const std::vector<User*> &users) = 0;
+
+protected:
+    int num_recommend = 3;
+
+    std::vector<Product *> cart;
+
+    std::vector<Product *> history;
+
+private:
+    std::string password;
 
 };
 
 class NormalUser : public User {
 public:
     NormalUser(const std::string &name, const std::string &password);
+
     int getPrice(Product*) override;
+
     std::vector<Product *> recommend(const std::vector<User*> &users) override;
 };
 
 class PremiumUser : public User {
 public:
     PremiumUser(const std::string &name, const std::string &password);
+
     int getPrice(Product*) override;
+
     std::vector<Product *> recommend(const std::vector<User*> &users) override;
 };
 
