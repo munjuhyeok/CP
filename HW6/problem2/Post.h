@@ -17,7 +17,7 @@ public:
 
 private:
     const static int ID_NOT_INITIATED = -1;
-    struct tm* dateTime;
+    time_t dateTime;
     std::string title, content;
 public:
     const std::string &getTitle() const;
@@ -26,7 +26,7 @@ public:
 
 public:
     Post(std::string title, std::string content);
-    Post(int id, struct tm *dateTime, std::string title, std::string content);
+    Post(int id, time_t dateTime, std::string title, std::string content);
     std::string getSummary();
     friend std::ostream& operator<<(std::ostream& os, const Post& post);
     static time_t parseDateTimeString(std::string dateString, std::string dateTimeFormatter);

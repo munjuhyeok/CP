@@ -32,7 +32,6 @@ void FrontEnd::post(std::pair<std::string, std::string> titleContentPair) {
 void FrontEnd::recommend() {
     std::vector<Post*> recommended = backEnd->recommend();
     for(Post* post:recommended){
-        printStream<<*post;
-        printStream<<std::endl<< "-----------------------------------" << std::endl;
+        printStream<<*post<<std::endl;
     }
 }

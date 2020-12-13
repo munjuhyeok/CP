@@ -70,10 +70,11 @@ std::vector<Post*> BackEnd::recommend() {
                     temp = temp.substr(0,pos);
                     int id = stoi(temp);
                     std::string content;
+                    getline(postStream,str); //remove first newline
                     while(getline(postStream,str)){
                         content+="\n"+str;
                     }
-                    recommended.insert(recommended.begin()+i, new Post(id, localtime(&time),title,content));
+                    recommended.insert(recommended.begin()+i, new Post(id, time,title,content));
                     times.insert(times.begin()+i, time);
                     break;
                 }

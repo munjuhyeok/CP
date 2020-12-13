@@ -11,9 +11,9 @@ void Post::setId(int id) {
 }
 
 
-Post::Post(std::string title, std::string content):Post(ID_NOT_INITIATED, localtime(new time_t(time(NULL))),title,content){}
+Post::Post(std::string title, std::string content):Post(ID_NOT_INITIATED, *(new time_t(time(0))),title,content){}
 
-Post::Post(int id, struct tm *dateTime, std::string title, std::string content) :id(id),dateTime(dateTime),title(title),content(content){}
+Post::Post(int id, time_t dateTime, std::string title, std::string content) :id(id),dateTime(dateTime),title(title),content(content){}
 
 std::string Post::getSummary() {
     std::stringstream ss;
@@ -32,7 +32,7 @@ const std::string &Post::getContent() const {
 }
 
 time_t Post::parseDateTimeString(std::string dateString, std::string dateTimeFormatter) {
-    struct tm* time = localtime(new time_t(NULL));
+    struct tm* time = localtime(new time_t(0));
     strptime(dateString.c_str(),dateTimeFormatter.c_str(),time);
 
     return mktime(time);
@@ -41,11 +41,12 @@ time_t Post::parseDateTimeString(std::string dateString, std::string dateTimeFor
 
 std::string Post::getDate() const{
     char date[80];
-    strftime(date,80,formatter,dateTime);
+    strftime(date,80,formatter,localtime(&dateTime));
     return date;
 }
 
 std::ostream& operator<<(std::ostream& os, const Post& post){
+    return
     os<<"-----------------------------------\nid: "
     <<post.id<<"\ncreated at: "<<post.getDate()
     <<"\ntitle: "
