@@ -4,8 +4,9 @@ project(problem2 VERSION 0.1.0)
 include(CTest)
 enable_testing()
 
-add_executable(problem2_main main.cpp app.cpp)
-add_executable(problem2_test test.cpp app.cpp)
+add_executable(problem2_main main.cpp app.cpp View.cpp User.cpp Post.cpp FrontEnd.cpp BackEnd.cpp)
+add_executable(problem2_test test.cpp app.cpp View.cpp User.cpp Post.cpp FrontEnd.cpp BackEnd.cpp)
+add_executable(problem2_mytest mytest.cpp app.cpp View.cpp User.cpp Post.cpp FrontEnd.cpp BackEnd.cpp)
 
 file(REMOVE_RECURSE ${CMAKE_BINARY_DIR}/data)
 file(REMOVE_RECURSE ${CMAKE_BINARY_DIR}/test)
