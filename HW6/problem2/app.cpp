@@ -42,7 +42,7 @@ bool App::query(std::string command) {
     }else if(instruction =="recommend"){
         recommend();
     } else{
-        os<<"Illegal Command Format : "<<command<<std::endl;
+//        os<<"Illegal Command Format : "<<command<<std::endl;
     }
     return true;
 }
@@ -58,7 +58,7 @@ void App::post() {
 }
 
 void App::search(std::string command) {
-
+    frontEnd->search(command);
 }
 
 void App::recommend() {

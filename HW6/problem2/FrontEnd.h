@@ -8,6 +8,8 @@
 #include "BackEnd.h"
 #include "User.h"
 #include <vector>
+#include <unordered_set>
+#include <sstream>
 
 class FrontEnd {
 private:
@@ -22,6 +24,7 @@ public:
     bool auth(std::string authInfo);
     void post(std::pair<std::string,std::string> titleContentPair);
     void recommend();
+    void search(std::string command);
 };
 
 

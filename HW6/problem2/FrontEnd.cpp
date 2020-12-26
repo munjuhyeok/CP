@@ -30,8 +30,25 @@ void FrontEnd::post(std::pair<std::string, std::string> titleContentPair) {
 }
 
 void FrontEnd::recommend() {
-    std::vector<Post*> recommended = backEnd->recommend();
-    for(Post* post:recommended){
-        printStream<<*post<<std::endl;
+    std::vector<Post> recommended = backEnd->recommend();
+    for(Post post:recommended){
+        printStream<<post<<std::endl;
+    }
+}
+
+void FrontEnd::search(std::string command) {
+    std::unordered_set<std::string> keywords;
+    std::istringstream ss(command);
+    std::string str;
+    ss>>str;//remove search command
+    std::string keyword;
+    while (ss >> keyword)
+    {
+        keywords.insert(keyword);
+    }
+    std::vector<Post> searched = backEnd->search(keywords);
+    printStream<<"-----------------------------------\n";
+    for(Post post:searched){
+        printStream<<post.getSummary()<<std::endl;
     }
 }

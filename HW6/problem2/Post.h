@@ -17,8 +17,8 @@ public:
 
 private:
     const static int ID_NOT_INITIATED = -1;
-    time_t dateTime;
-    std::string title, content;
+//    time_t dateTime;
+    std::string dateTime, title, content;
 public:
     const std::string &getTitle() const;
 
@@ -26,10 +26,12 @@ public:
 
 public:
     Post(std::string title, std::string content);
-    Post(int id, time_t dateTime, std::string title, std::string content);
+    Post(int id, std::string dateTime, std::string title, std::string content);
     std::string getSummary();
     friend std::ostream& operator<<(std::ostream& os, const Post& post);
     static time_t parseDateTimeString(std::string dateString, std::string dateTimeFormatter);
+    std::string getDate(time_t) const;
     std::string getDate() const;
+
 };
 #endif //PROBLEM2_POST_H
